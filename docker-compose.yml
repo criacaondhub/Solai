@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+
+## --------------------------- SOLAI LANDING --------------------------- ##
+
+  solai_landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: solai-landing:latest
+    container_name: solai_landing
+
+    networks:
+      - nddNet
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.role == manager
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.solai_landing.rule=Host(`sol.mairasoliani.com.br`)
+        - traefik.http.routers.solai_landing.entrypoints=websecure
+        - traefik.http.routers.solai_landing.priority=1
+        - traefik.http.routers.solai_landing.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.solai_landing.service=solai_landing
+        - traefik.http.services.solai_landing.loadbalancer.server.port=80
+        - traefik.http.services.solai_landing.loadbalancer.passHostHeader=1
+
+## ---------------------------------------------------------------------- ##
+
+networks:
+  nddNet:
+    external: true
+    name: nddNet
