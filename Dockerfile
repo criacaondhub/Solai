@@ -1,10 +1,10 @@
-# Build Stage
-FROM node:18-alpine as build
+# Build stage
+FROM node:20-slim AS build
 
 WORKDIR /app
 
 # Copy package files
-COPY package*.json ./
+COPY package.json package-lock.json* ./
 
 # Install dependencies
 RUN npm install
@@ -12,13 +12,13 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Build the application
+# Build the project
 RUN npm run build
 
-# Production Stage
+# Serve stage
 FROM nginx:alpine
 
-# Copy built assets from build stage
+# Copy built files from build stage
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # Copy custom nginx config
