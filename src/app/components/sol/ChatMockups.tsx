@@ -1,8 +1,9 @@
 import { motion, AnimatePresence, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import solLogo from "figma:asset/d0ce00d0a5c69103cc27ccf53dcfcadc528cbeca.png";
-import solAvatar from "figma:asset/d586e975fff0287aa0f7a40d12aef8a4974e4978.png";
-import plateImage from "figma:asset/86254d01d9369815ae18743acc72963618a5da9a.png";
+
+const solLogo = "https://i.postimg.cc/3RzBm7ZQ/Logo-Sol.png";
+const solAvatar = "https://i.postimg.cc/L6KDs9XY/foto-de-perfil.png";
+const plateImage = "https://images.unsplash.com/photo-1554721388-3db53bf7a24a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoZWFsdGh5JTIwZm9vZCUyMHBsYXRlJTIwdG9wJTIwdmlld3xlbnwxfHx8fDE3Njg0MTYxNzF8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral";
 
 // Mockup Data
 const MOCKUPS = [

@@ -6,10 +6,11 @@ import {
 } from "motion/react";
 import { useRef } from "react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
-import card1Image from "figma:asset/fbc7a22b2628a297f4541acd4e7e8a531e8a5788.png";
-import card2Image from "figma:asset/36f550d19ef7e19020bcb7b35cf8c3d6821bf3ec.png";
-import card3Image from "figma:asset/0301cec373ddf2bc8f266ccae82873b9262e54f2.png";
-import card4Image from "figma:asset/aefb2d43b347d7e8315970c3bf7da7979102e6f5.png";
+
+const card1Image = "https://i.postimg.cc/MGTbLXP6/Gemini-Generated-Image-ns6qanns6qanns6q.png";
+const card2Image = "https://i.postimg.cc/Fs4b4TW0/Gemini-Generated-Image-gepv1fgepv1fgepv.png";
+const card3Image = "https://i.postimg.cc/287Q8ngf/Gemini-Generated-Image-8xcbef8xcbef8xcb.png";
+const card4Image = "https://i.postimg.cc/3wdmBVRz/Gemini-Generated-Image-6dkls46dkls46dkl.png";
 
 interface CardData {
   h1: string;

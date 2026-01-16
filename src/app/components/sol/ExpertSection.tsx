@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { ScrollBackgroundOrbs } from "@/app/components/sol/ScrollBackgroundOrbs";
-import expertImg from "figma:asset/c3844261a399295273b46bc28600e735e33e3672.png";
+
+const expertImg = "https://i.postimg.cc/BvLPDF78/DSC-0056-(1).jpg";
 
 export function ExpertSection() {
   return (

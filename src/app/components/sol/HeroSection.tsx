@@ -4,7 +4,8 @@ import { ChatMockups } from "./ChatMockups";
 import SplitText from "./SplitText";
 import { ScrollBackgroundOrbs } from "./ScrollBackgroundOrbs";
 import StartChatButton from "./StartChatButton";
-import solLogo from "figma:asset/d0ce00d0a5c69103cc27ccf53dcfcadc528cbeca.png";
+
+const solLogo = "https://i.postimg.cc/3RzBm7ZQ/Logo-Sol.png";
 
 export function HeroSection() {
   return (

@@ -1,8 +1,6 @@
 import { motion } from "motion/react";
-import { Check, Info } from "lucide-react";
+import { Check, Info, X } from "lucide-react";
 import { useState } from "react";
-import xIcon from "figma:asset/39116f1b4798bc2ce6a6e10b0ce7626641f7a9d7.png";
-import greenCheckIcon from "figma:asset/4ad2eb1752466c61c6bb41a0e223251a906a1a7b.png";
 import {
   Tooltip,
   TooltipContent,
@@ -233,17 +231,9 @@ export function PricingSection() {
                       <div key={i} className="flex items-center gap-3">
                         <div className="flex-shrink-0">
                           {isExcluded ? (
-                             <img 
-                              src={xIcon} 
-                              alt="Excluded" 
-                              className="w-4 h-4 opacity-80"
-                             />
+                             <X className="w-4 h-4 text-white/30" />
                           ) : useGreenCheck ? (
-                             <img 
-                              src={greenCheckIcon} 
-                              alt="Included" 
-                              className="w-4 h-4" 
-                             />
+                             <Check className="w-4 h-4 text-[#25D366]" />
                           ) : (
                              <Check className="w-4 h-4 text-[#CC3300]" />
                           )}

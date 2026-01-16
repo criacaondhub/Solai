@@ -3,10 +3,9 @@ import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { ScrollBackgroundOrbs } from "@/app/components/sol/ScrollBackgroundOrbs";
 import StartChatButton from "./StartChatButton";
 
-// Real images from Figma Assets
-import imgICley from "figma:asset/2531292badf65210926658eafbbcd8272d726c07.png";
-import imgMonica from "figma:asset/f3d2393000c5d4e747176b1f67b0d832fc096ed1.png";
-import imgEddy from "figma:asset/c5e56f1be0bfa3ebedf547248385be85ac0037d4.png";
+const imgICley = "https://i.postimg.cc/05pmcpk9/Captura-de-tela-2025-09-29-110706.jpg";
+const imgMonica = "https://i.postimg.cc/j5fNVfzb/Captura-de-tela-2025-09-29-110542.jpg";
+const imgEddy = "https://i.postimg.cc/c403jrCc/Captura-de-tela-2025-09-29-110825.jpg";
 
 const testimonials = [
   {
