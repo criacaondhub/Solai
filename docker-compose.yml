@@ -1,11 +1,18 @@
 version: "3.7"
-
 services:
+
+## --------------------------- SOL AI --------------------------- ##
+
   sol_landing_page:
     build:
       context: .
       dockerfile: Dockerfile
-    image: sol-landing-page:latest
+    image: sol-landing-page:latest ## Nome da imagem gerada
+    container_name: sol_landing_page
+
+    networks:
+      - nddNet ## Nome da rede interna
+
     deploy:
       mode: replicated
       replicas: 1
@@ -17,16 +24,18 @@ services:
           cpus: "0.5"
           memory: 512M
       labels:
-        - "traefik.enable=true"
-        - "traefik.http.routers.sol_landing.rule=Host(`sol.mairasoliani.com.br`)"
-        - "traefik.http.routers.sol_landing.entrypoints=websecure"
-        - "traefik.http.routers.sol_landing.tls.certresolver=letsencryptresolver"
-        - "traefik.http.services.sol_landing.loadbalancer.server.port=80"
-        - "traefik.http.routers.sol_landing.service=sol_landing"
-    networks:
-      - nddNet
+        - traefik.enable=true
+        - traefik.http.routers.sol_landing.rule=Host(`sol.mairasoliani.com.br`) ## Url da Landing Page
+        - traefik.http.routers.sol_landing.entrypoints=websecure
+        - traefik.http.routers.sol_landing.priority=1
+        - traefik.http.routers.sol_landing.tls.certresolver=letsencryptresolver
+        - traefik.http.routers.sol_landing.service=sol_landing
+        - traefik.http.services.sol_landing.loadbalancer.server.port=80
+        - traefik.http.services.sol_landing.loadbalancer.passHostHeader=1
+
+## --------------------------- SOL AI --------------------------- ##
 
 networks:
-  nddNet:
+  nddNet: ## Nome da rede interna
     external: true
-    name: nddNet
+    name: nddNet ## Nome da rede interna
