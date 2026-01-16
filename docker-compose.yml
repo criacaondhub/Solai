@@ -1,15 +1,9 @@
-version: "3.7"
 services:
 
 ## --------------------------- SOL AI --------------------------- ##
 
   sol_landing_page:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: sol-landing-page:latest ## Nome da imagem gerada
-    container_name: sol_landing_page
-
+    image: sol-landing-page:latest ## Nome da imagem gerada pelo build.sh
     networks:
       - nddNet ## Nome da rede interna
 
@@ -25,7 +19,7 @@ services:
           memory: 512M
       labels:
         - traefik.enable=true
-        - traefik.http.routers.sol_landing.rule=Host(`sol.mairasoliani.com.br`) ## Url da Landing Page
+        - traefik.http.routers.sol_landing.rule=Host(`sol.mairasoliani.com.br`)
         - traefik.http.routers.sol_landing.entrypoints=websecure
         - traefik.http.routers.sol_landing.priority=1
         - traefik.http.routers.sol_landing.tls.certresolver=letsencryptresolver
@@ -36,6 +30,6 @@ services:
 ## --------------------------- SOL AI --------------------------- ##
 
 networks:
-  nddNet: ## Nome da rede interna
+  nddNet:
     external: true
-    name: nddNet ## Nome da rede interna
+    name: nddNet
