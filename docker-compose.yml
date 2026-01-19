@@ -19,13 +19,20 @@ services:
           memory: 512M
       labels:
         - traefik.enable=true
+        # Router HTTP - Redireciona para HTTPS
+        - traefik.http.routers.sol_landing_http.rule=Host(`sol.mairasoliani.com.br`)
+        - traefik.http.routers.sol_landing_http.entrypoints=web
+        - traefik.http.routers.sol_landing_http.middlewares=sol_landing_redirect
+        - traefik.http.middlewares.sol_landing_redirect.redirectscheme.scheme=https
+        - traefik.http.middlewares.sol_landing_redirect.redirectscheme.permanent=true
+        # Router HTTPS - Com SSL
         - traefik.http.routers.sol_landing.rule=Host(`sol.mairasoliani.com.br`)
         - traefik.http.routers.sol_landing.entrypoints=websecure
-        - traefik.http.routers.sol_landing.priority=1
         - traefik.http.routers.sol_landing.tls.certresolver=letsencryptresolver
         - traefik.http.routers.sol_landing.service=sol_landing
+        # Service
         - traefik.http.services.sol_landing.loadbalancer.server.port=80
-        - traefik.http.services.sol_landing.loadbalancer.passHostHeader=1
+        - traefik.http.services.sol_landing.loadbalancer.passHostHeader=true
 
 ## --------------------------- SOL AI --------------------------- ##
 
