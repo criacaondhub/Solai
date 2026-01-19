@@ -7,7 +7,7 @@ import {
 import { useRef } from "react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
-const card1Image = "https://i.postimg.cc/MGTbLXP6/Gemini-Generated-Image-ns6qanns6qanns6q.png";
+const card1Image = "https://i.postimg.cc/FzhHhpKr/freshly-baked-croissant-cup-coffee-white-wooden-table.jpg";
 const card2Image = "https://i.postimg.cc/Fs4b4TW0/Gemini-Generated-Image-gepv1fgepv1fgepv.png";
 const card3Image = "https://i.postimg.cc/287Q8ngf/Gemini-Generated-Image-8xcbef8xcbef8xcb.png";
 const card4Image = "https://i.postimg.cc/3wdmBVRz/Gemini-Generated-Image-6dkls46dkls46dkl.png";
@@ -93,10 +93,9 @@ const Card = ({
 
             <div className="h-[2px] w-12 bg-[#CC3300]/80 rounded-full" />
 
-            <p 
-              className={`text-white/80 font-light italic leading-relaxed ${
-                i === 1 ? "text-base md:text-2xl" : "text-xl md:text-2xl"
-              }`}
+            <p
+              className={`text-white/80 font-light leading-relaxed ${i === 1 ? "text-base md:text-2xl" : "text-xl md:text-2xl"
+                }`}
             >
               {data.h2}
             </p>
@@ -127,7 +126,7 @@ export function CardStackSection() {
       <div className="relative z-10 flex flex-col items-center text-center pt-16 md:pt-24 pb-0 px-6 max-w-5xl mx-auto">
         <h2 className="text-white text-3xl md:text-5xl font-[Roboto] mb-6 leading-tight max-w-[900px]">
           A{" "}
-          <span className="text-[#CC3300] italic font-bold">
+          <span className="text-[#CC3300] font-bold">
             SOL não é mais uma ferramenta básica
           </span>{" "}
           que apenas analisa seu prato de comida.

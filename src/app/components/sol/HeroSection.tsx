@@ -4,6 +4,7 @@ import { ChatMockups } from "./ChatMockups";
 import SplitText from "./SplitText";
 import { ScrollBackgroundOrbs } from "./ScrollBackgroundOrbs";
 import StartChatButton from "./StartChatButton";
+import gsap from "gsap";
 
 const solLogo = "https://i.postimg.cc/3RzBm7ZQ/Logo-Sol.png";
 
@@ -12,7 +13,7 @@ export function HeroSection() {
     <div className="bg-[#FFFAFA] min-h-screen flex flex-col font-[Roboto] relative overflow-hidden">
       {/* Unified Scroll-based Parallax Orbs for Light Sections */}
       <ScrollBackgroundOrbs />
-      
+
       <div className="relative z-10 w-full flex flex-col items-center flex-1">
         <Ticker />
 
@@ -97,12 +98,19 @@ export function HeroSection() {
 
           <div className="mb-10 mt-2">
             <StartChatButton
-              onClick={() =>
-                window.open(
-                  "https://wa.me/5511999999999",
-                  "_blank",
-                )
-              }
+              onClick={() => {
+                const element = document.getElementById("pricing");
+                if (element) {
+                  const targetY = element.getBoundingClientRect().top + window.pageYOffset;
+                  const obj = { y: window.pageYOffset };
+                  gsap.to(obj, {
+                    y: targetY,
+                    duration: 1.5,
+                    ease: "power4.inOut",
+                    onUpdate: () => window.scrollTo(0, obj.y)
+                  });
+                }
+              }}
               className="!px-12 py-[28px] border-none shadow-xl px-[48px]"
             />
           </div>
