@@ -7,10 +7,12 @@ import {
 import { useRef } from "react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
-const card1Image = "https://i.postimg.cc/FzhHhpKr/freshly-baked-croissant-cup-coffee-white-wooden-table.jpg";
-const card2Image = "https://i.postimg.cc/Fs4b4TW0/Gemini-Generated-Image-gepv1fgepv1fgepv.png";
+import card1Image from "../../../assets/prato-2.webp"; // Using the same import for card 1 for now or updating as needed?
+// The user explicitly asked for card 2 image change to prato-2.webp
+import card2Image from "../../../assets/prato-2.webp";
 const card3Image = "https://i.postimg.cc/287Q8ngf/Gemini-Generated-Image-8xcbef8xcbef8xcb.png";
 const card4Image = "https://i.postimg.cc/3wdmBVRz/Gemini-Generated-Image-6dkls46dkls46dkl.png";
+const card1ImageExternal = "https://i.postimg.cc/FzhHhpKr/freshly-baked-croissant-cup-coffee-white-wooden-table.jpg";
 
 interface CardData {
   h1: string;
@@ -23,12 +25,12 @@ const cards: CardData[] = [
   {
     h1: "Ela cuida da sua insulina",
     h2: '"Cuidado, comer apenas isso te fará ter um pico na sua insulina, adicione ovos…"',
-    image: card1Image,
+    image: card1ImageExternal,
     alt: "Prato de macarronada",
   },
   {
     h1: "Ela avalia a densidade\nnutricional do seu prato",
-    h2: '"Seu prato tem muitas proteínas (hambúrguer, linguiça, molho de carne), o que ajuda na saciedade, mas a quantidade total de carnes processadas e gordurosas está alta, o que pode aumentar inflamação se consumido com frequência."',
+    h2: "Purê de batata é uma ótima fonte de carboidratos e combina bem com a carne ao molho e o arroz. Para deixar a refeição ainda mais equilibrada, você pode adicionar vegetais ou uma salada fresca para fibras e vitaminas. Quer dicas de acompanhamentos saudáveis para complementar seu prato?",
     image: card2Image,
     alt: "Prato com hamburguers e linguiças",
   },

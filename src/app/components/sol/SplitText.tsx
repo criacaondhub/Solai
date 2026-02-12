@@ -13,7 +13,7 @@ interface SplitTextProps {
   to?: gsap.TweenVars;
   threshold?: number;
   rootMargin?: string;
-  textAlign?: 'left' | 'center' | 'right' | 'justify';
+  textAlign?: 'left' | 'center' | 'right' | 'justify' | 'inherit';
   onLetterAnimationComplete?: () => void;
 }
 
@@ -28,7 +28,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
   to = { opacity: 1, y: 0 },
   threshold = 0.1,
   rootMargin = '-50px',
-  textAlign = 'left',
+  textAlign = 'inherit',
   onLetterAnimationComplete,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,27 +82,27 @@ export const SplitText: React.FC<SplitTextProps> = ({
     <div
       ref={containerRef}
       className={className}
-      style={{ textAlign, display: 'inline-block' }}
+      style={{ textAlign, display: 'inline' }}
     >
       {words.map((word, wordIndex) => (
         <span key={wordIndex} style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
           {splitType === 'chars'
             ? word.split('').map((char, charIndex) => (
-                <span
-                  key={charIndex}
-                  className="split-item"
-                  style={{ display: 'inline-block', opacity: 0 }} // Initial hidden state to prevent flash
-                >
-                  {char}
-                </span>
-              ))
+              <span
+                key={charIndex}
+                className="split-item"
+                style={{ display: 'inline-block', opacity: 0 }} // Initial hidden state to prevent flash
+              >
+                {char}
+              </span>
+            ))
             : (
-                <span
-                    className="split-item"
-                    style={{ display: 'inline-block', opacity: 0 }}
-                >
-                    {word}
-                </span>
+              <span
+                className="split-item"
+                style={{ display: 'inline-block', opacity: 0 }}
+              >
+                {word}
+              </span>
             )
           }
           {/* Add space after word unless it's the last one */}
