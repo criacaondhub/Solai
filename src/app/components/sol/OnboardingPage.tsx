@@ -125,7 +125,7 @@ export function OnboardingPage() {
 
         if (!isValidWhatsAppPhone(phone)) {
             setErrorMessage(
-                "Número inválido. Use o formato internacional: 5511966113170 (código do país + DDD + número)"
+                "Número inválido. Use o formato internacional: 5511999999999 (código do país + DDD + número)"
             );
             return;
         }
@@ -176,7 +176,7 @@ export function OnboardingPage() {
     useEffect(() => {
         if (user && user.max_dependents > 0) {
             const slotsAvailable = user.max_dependents - dependents.length;
-            setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill(""));
+            setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
         }
     }, [user, dependents.length]);
 
@@ -220,8 +220,8 @@ export function OnboardingPage() {
                                     <div
                                         key={i}
                                         className={`w-2 h-2 rounded-full transition-all duration-300 ${i < retryCount
-                                                ? "bg-[#CC3300] scale-100"
-                                                : "bg-white/10 scale-75"
+                                            ? "bg-[#CC3300] scale-100"
+                                            : "bg-white/10 scale-75"
                                             }`}
                                     />
                                 ))}
@@ -396,7 +396,7 @@ export function OnboardingPage() {
                                                                     });
                                                                     setErrorMessage(null);
                                                                 }}
-                                                                placeholder="5511966113170"
+                                                                placeholder="5511999999999"
                                                                 maxLength={13}
                                                                 className="w-full bg-white/[0.04] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-sm font-mono placeholder:text-white/20 focus:outline-none focus:border-[#CC3300]/50 focus:ring-1 focus:ring-[#CC3300]/20 transition-all duration-300"
                                                             />
