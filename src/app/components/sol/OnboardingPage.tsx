@@ -74,7 +74,10 @@ export function OnboardingPage() {
 
     // ─── Fetch user with retry ──────────────────────────────────────
     const fetchUser = useCallback(async () => {
-        if (!email) {
+        const orderCode = searchParams.get("order_code");
+
+        // Se não tiver nem e-mail (válido) nem order_code, erro direto
+        if (!orderCode && (!email || email === "{{email}}")) {
             setPageState("error");
             return;
         }
@@ -82,11 +85,18 @@ export function OnboardingPage() {
         for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
             setRetryCount(attempt + 1);
 
-            const { data, error } = await supabase
+            let query = supabase
                 .from("users")
-                .select("id, email, phone, max_dependents, plan_type, subscription_status")
-                .eq("email", email)
-                .single();
+                .select("id, email, phone, max_dependents, plan_type, subscription_status, order_code");
+
+            // Prioriza busca por order_code se disponível
+            if (orderCode) {
+                query = query.eq("order_code", orderCode);
+            } else if (email && email !== "{{email}}") {
+                query = query.eq("email", email);
+            }
+
+            const { data, error } = await query.single();
 
             if (data && data.max_dependents !== null && data.max_dependents !== undefined) {
                 setUser(data as UserData);
@@ -104,7 +114,7 @@ export function OnboardingPage() {
 
         // All retries exhausted
         setPageState("error");
-    }, [email]);
+    }, [email, searchParams]);
 
     // ─── Fetch existing dependents ─────────────────────────────────
     const fetchDependents = async (parentId: string) => {
