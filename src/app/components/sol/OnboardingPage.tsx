@@ -69,6 +69,8 @@ export function OnboardingPage() {
     const [submitting, setSubmitting] = useState<number | null>(null);
     const [successMessages, setSuccessMessages] = useState<Record<number, boolean>>({});
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
+
 
     // ─── Fetch user with retry ──────────────────────────────────────
     const fetchUser = useCallback(async () => {
@@ -181,7 +183,7 @@ export function OnboardingPage() {
         if (user && user.max_dependents > 0 && phoneInputs.length === 0) {
             const slotsAvailable = user.max_dependents - dependents.length;
             if (slotsAvailable > 0) {
-                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
+                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill(""));
             }
         }
     }, [user]); // Only run when user data arrives
@@ -191,7 +193,7 @@ export function OnboardingPage() {
         if (user && user.max_dependents > 0 && dependents.length > 0 && phoneInputs.length === 0) {
             const slotsAvailable = user.max_dependents - dependents.length;
             if (slotsAvailable > 0) {
-                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
+                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill(""));
             }
         }
     }, [user, dependents.length]);
@@ -353,7 +355,7 @@ export function OnboardingPage() {
                                         </h2>
                                         <p className="text-white/40 text-xs">
                                             {slotsRemaining > 0
-                                                ? `Você ainda pode adicionar ${slotsRemaining} número${slotsRemaining > 1 ? "s" : ""}`
+                                                ? `Você ainda pode adicionar ${slotsRemaining} número${slotsRemaining > 1 ? "s" : ""} (Inclua o DDD)`
                                                 : "Todas as vagas foram preenchidas"}
                                         </p>
                                     </div>
@@ -400,9 +402,25 @@ export function OnboardingPage() {
                                                     <div className="flex gap-2">
                                                         <div className="relative flex-1">
                                                             <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+                                                            {(focusedIndex === index || value.length > 0) && (
+                                                                <span className="absolute left-10 top-1/2 -translate-y-1/2 text-white/40 text-sm font-mono select-none">
+                                                                    +
+                                                                </span>
+                                                            )}
                                                             <input
                                                                 type="tel"
                                                                 value={value}
+                                                                onFocus={() => {
+                                                                    setFocusedIndex(index);
+                                                                    if (value === "") {
+                                                                        setPhoneInputs((prev) => {
+                                                                            const updated = [...prev];
+                                                                            updated[index] = "55";
+                                                                            return updated;
+                                                                        });
+                                                                    }
+                                                                }}
+                                                                onBlur={() => setFocusedIndex(null)}
                                                                 onChange={(e) => {
                                                                     const sanitized = sanitizePhone(e.target.value);
                                                                     setPhoneInputs((prev) => {
@@ -412,9 +430,9 @@ export function OnboardingPage() {
                                                                     });
                                                                     setErrorMessage(null);
                                                                 }}
-                                                                placeholder="5511999999999"
+                                                                placeholder="11 99999-9999"
                                                                 maxLength={13}
-                                                                className="w-full bg-white/[0.04] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-white text-sm font-mono placeholder:text-white/20 focus:outline-none focus:border-[#CC3300]/50 focus:ring-1 focus:ring-[#CC3300]/20 transition-all duration-300"
+                                                                className={`w-full bg-white/[0.04] border border-white/10 rounded-xl pr-4 py-3 text-white text-sm font-mono placeholder:text-white/20 focus:outline-none focus:border-[#CC3300]/50 focus:ring-1 focus:ring-[#CC3300]/20 transition-all duration-300 ${(focusedIndex === index || value.length > 0) ? "pl-14" : "pl-10"}`}
                                                             />
                                                         </div>
                                                         <button
