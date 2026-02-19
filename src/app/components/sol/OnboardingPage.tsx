@@ -154,12 +154,15 @@ export function OnboardingPage() {
             // Show success for this slot
             setSuccessMessages((prev) => ({ ...prev, [index]: true }));
 
-            // Clear the input
-            setPhoneInputs((prev) => {
-                const updated = [...prev];
-                updated[index] = "";
-                return updated;
-            });
+            // After a short delay to show the success message, remove this slot
+            setTimeout(() => {
+                setPhoneInputs((prev) => prev.filter((_, i) => i !== index));
+                setSuccessMessages((prev) => {
+                    const next = { ...prev };
+                    delete next[index];
+                    return next;
+                });
+            }, 2000);
         } catch {
             setErrorMessage("Erro de conexão. Verifique sua internet e tente novamente.");
         } finally {
@@ -172,11 +175,24 @@ export function OnboardingPage() {
         fetchUser();
     }, [fetchUser]);
 
-    // Initialize phone inputs when user loads
+    // Initialize phone inputs ONLY ONCE when the user is first loaded
+    // This prevents resetting other fields when one is registered
     useEffect(() => {
-        if (user && user.max_dependents > 0) {
+        if (user && user.max_dependents > 0 && phoneInputs.length === 0) {
             const slotsAvailable = user.max_dependents - dependents.length;
-            setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
+            if (slotsAvailable > 0) {
+                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
+            }
+        }
+    }, [user]); // Only run when user data arrives
+
+    // Update phone inputs ONLY if we haven't initialized them yet or if they were empty
+    useEffect(() => {
+        if (user && user.max_dependents > 0 && dependents.length > 0 && phoneInputs.length === 0) {
+            const slotsAvailable = user.max_dependents - dependents.length;
+            if (slotsAvailable > 0) {
+                setPhoneInputs(new Array(Math.max(0, slotsAvailable)).fill("55"));
+            }
         }
     }, [user, dependents.length]);
 
