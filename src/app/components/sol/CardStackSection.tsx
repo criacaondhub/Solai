@@ -7,12 +7,10 @@ import {
 import { useRef } from "react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 
-import card1Image from "../../../assets/prato-2.webp"; // Using the same import for card 1 for now or updating as needed?
-// The user explicitly asked for card 2 image change to prato-2.webp
-import card2Image from "../../../assets/prato-2.webp";
-const card3Image = "https://i.postimg.cc/287Q8ngf/Gemini-Generated-Image-8xcbef8xcbef8xcb.png";
-const card4Image = "https://i.postimg.cc/3wdmBVRz/Gemini-Generated-Image-6dkls46dkls46dkl.png";
-const card1ImageExternal = "https://i.postimg.cc/FzhHhpKr/freshly-baked-croissant-cup-coffee-white-wooden-table.jpg";
+import card1Image from "@/assets/prato-1.webp";
+import card2Image from "@/assets/prato-2.webp";
+import card3Image from "@/assets/prato-3.webp";
+import card4Image from "@/assets/prato-4.webp";
 
 interface CardData {
   h1: string;
@@ -25,7 +23,7 @@ const cards: CardData[] = [
   {
     h1: "Ela cuida da sua insulina",
     h2: '"Cuidado, comer apenas isso te fará ter um pico na sua insulina, adicione ovos…"',
-    image: card1ImageExternal,
+    image: card1Image,
     alt: "Prato de macarronada",
   },
   {

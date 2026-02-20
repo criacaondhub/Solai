@@ -4,15 +4,24 @@ import { ScrollBackgroundOrbs } from "@/app/components/sol/ScrollBackgroundOrbs"
 import StartChatButton from "./StartChatButton";
 import gsap from "gsap";
 
+import depoimento1 from "@/assets/depoimento-1.webp";
+import depoimento2 from "@/assets/depoimento-2.webp";
+import depoimento3 from "@/assets/depoimento-3.webp";
+import depoimento4 from "@/assets/depoimento-4.webp";
+import depoimento5 from "@/assets/depoimento-5.webp";
+import depoimento6 from "@/assets/depoimento-6.webp";
+import depoimento7 from "@/assets/depoimento-7.webp";
+import depoimento8 from "@/assets/depoimento-8.webp";
+
 const testimonials = [
-  { id: "1", image: "https://i.postimg.cc/TY8zS0w3/Depoimento-1.png", name: "Depoimento 1", className: "md:col-span-2 md:row-span-2", delay: 0.1 },
-  { id: "2", image: "https://i.postimg.cc/nc8y52zH/Depoimento-2.png", name: "Depoimento 2", className: "md:col-span-1 md:row-span-1", delay: 0.2 },
-  { id: "3", image: "https://i.postimg.cc/nc8y52zf/Depoimento-3.png", name: "Depoimento 3", className: "md:col-span-1 md:row-span-1", delay: 0.3 },
-  { id: "4", image: "https://i.postimg.cc/02gT3nQq/Depoimento-4.png", name: "Depoimento 4", className: "md:col-span-1 md:row-span-1", delay: 0.4 },
-  { id: "5", image: "https://i.postimg.cc/X7MRhLJX/Depoimento-5.png", name: "Depoimento 5", className: "md:col-span-1 md:row-span-1", delay: 0.5 },
-  { id: "6", image: "https://i.postimg.cc/fT4GFCLb/Depoimento-6.png", name: "Depoimento 6", className: "md:col-span-2 md:row-span-1", delay: 0.6 },
-  { id: "7", image: "https://i.postimg.cc/Nf13wX9K/Depoimento-7.png", name: "Depoimento 7", className: "md:col-span-1 md:row-span-1", delay: 0.7 },
-  { id: "8", image: "https://i.postimg.cc/fT4GFCL3/Depoimento-8.png", name: "Depoimento 8", className: "md:col-span-1 md:row-span-1", delay: 0.8 }
+  { id: "1", image: depoimento1, name: "Depoimento 1", className: "md:col-span-2 md:row-span-2", delay: 0.1 },
+  { id: "2", image: depoimento2, name: "Depoimento 2", className: "md:col-span-1 md:row-span-1", delay: 0.2 },
+  { id: "3", image: depoimento3, name: "Depoimento 3", className: "md:col-span-1 md:row-span-1", delay: 0.3 },
+  { id: "4", image: depoimento4, name: "Depoimento 4", className: "md:col-span-1 md:row-span-1", delay: 0.4 },
+  { id: "5", image: depoimento5, name: "Depoimento 5", className: "md:col-span-1 md:row-span-1", delay: 0.5 },
+  { id: "6", image: depoimento6, name: "Depoimento 6", className: "md:col-span-2 md:row-span-1", delay: 0.6 },
+  { id: "7", image: depoimento7, name: "Depoimento 7", className: "md:col-span-1 md:row-span-1", delay: 0.7 },
+  { id: "8", image: depoimento8, name: "Depoimento 8", className: "md:col-span-1 md:row-span-1", delay: 0.8 }
 ];
 
 export function TestimonialsSection() {

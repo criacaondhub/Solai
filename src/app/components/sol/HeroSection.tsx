@@ -6,7 +6,7 @@ import StartChatButton from "./StartChatButton";
 import gsap from "gsap";
 import solMotion from "../../../assets/video-sol-transparente.webm";
 
-const solLogo = "https://i.postimg.cc/3RzBm7ZQ/Logo-Sol.png";
+import solLogo from "@/assets/logo-sol.webp";
 
 export function HeroSection() {
   return (

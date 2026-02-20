@@ -2,14 +2,14 @@ import { motion } from "motion/react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
 import { ScrollBackgroundOrbs } from "@/app/components/sol/ScrollBackgroundOrbs";
 
-const expertImg = "https://i.postimg.cc/BvLPDF78/DSC-0056-(1).jpg";
+import expertImg from "@/assets/dra-maira.webp";
 
 export function ExpertSection() {
   return (
     <section className="py-16 md:py-24 px-6 relative">
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
-          
+
           {/* Left Column - Text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -29,7 +29,7 @@ export function ExpertSection() {
               <p>
                 <strong className="text-[rgb(30,21,20)] font-semibold">Dra. Maíra Soliani</strong> é médica PhD, especialista em medicina funcional e jejum intermitente.
               </p>
-              
+
               <p>
                 Ao longo dos últimos 8 anos já ajudou mais de 5.000 pessoas a transformarem sua saúde, emagrecer e melhorar o metabolismo aplicando estratégias baseadas na ciência.
               </p>
@@ -54,17 +54,17 @@ export function ExpertSection() {
           >
             {/* Glass Backdrop Decoration */}
             <div className="absolute -inset-4 bg-white/40 backdrop-blur-xl rounded-[40px] border border-white/20 shadow-2xl -z-10 transform rotate-2 md:rotate-3" />
-            
+
             <div className="relative overflow-hidden rounded-[32px] shadow-2xl group border border-white/10">
               <ImageWithFallback
                 src={expertImg}
                 alt="Dra. Maíra Soliani"
                 className="w-full h-auto object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
               />
-              
+
               {/* Subtle Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#1E1514]/20 to-transparent pointer-events-none" />
-              
+
               {/* Expert Label */}
               <div className="absolute bottom-6 left-6 right-6">
                 <div className="bg-white/10 backdrop-blur-md px-6 py-4 rounded-2xl border border-white/20 flex flex-col gap-1">
