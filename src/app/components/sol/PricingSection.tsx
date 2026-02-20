@@ -63,6 +63,11 @@ const basePlans = [
       semestral: { value: "R$ 27,58", details: "ou R$ 147,00 à vista" },
       anual: { value: "R$ 25,55", details: "ou R$ 247,00 à vista" }
     },
+    checkoutLinks: {
+      mensal: "https://pay.kiwify.com.br/rIRcNUZ",
+      semestral: "https://pay.kiwify.com.br/Y2KcAql",
+      anual: "https://pay.kiwify.com.br/r3PTOKe"
+    },
     period: "/mês",
     buttonText: "Escolher este plano",
     popular: false
@@ -72,8 +77,13 @@ const basePlans = [
     name: "Plano Duo",
     prices: {
       mensal: { value: "R$ 47", details: null },
-      semestral: { value: "R$ 44,71", details: "ou R$ 227,00 à vista" },
-      anual: { value: "R$ 41,41", details: "ou R$ 399,00 à vista" }
+      semestral: { value: "R$ 42,59", details: "ou R$ 227,00 à vista" },
+      anual: { value: "R$ 41,27", details: "ou R$ 399,00 à vista" }
+    },
+    checkoutLinks: {
+      mensal: "https://pay.kiwify.com.br/RCJTmmv",
+      semestral: "https://pay.kiwify.com.br/Bfqp8rg",
+      anual: "https://pay.kiwify.com.br/lECIVO7"
     },
     period: "/mês",
     buttonText: "Escolher este plano",
@@ -84,8 +94,13 @@ const basePlans = [
     name: "Plano Família",
     prices: {
       mensal: { value: "R$ 75", details: null },
-      semestral: { value: "R$ 71,36", details: "ou R$ 362,00 à vista" },
-      anual: { value: "R$ 66,08", details: "ou R$ 638,00 à vista" }
+      semestral: { value: "R$ 67,91", details: "ou R$ 362,00 à vista" },
+      anual: { value: "R$ 65,98", details: "ou R$ 638,00 à vista" }
+    },
+    checkoutLinks: {
+      mensal: "https://pay.kiwify.com.br/ebap4Hh",
+      semestral: "https://pay.kiwify.com.br/KCzitPp",
+      anual: "https://pay.kiwify.com.br/lfk8Mfs"
     },
     period: "/mês",
     buttonText: "Escolher este plano",
@@ -140,6 +155,7 @@ export function PricingSection() {
           {basePlans.map((plan, index) => {
             const currentCycle = billingCycles[plan.id];
             const currentPrice = plan.prices[currentCycle];
+            const checkoutUrl = (plan as any).checkoutLinks ? (plan as any).checkoutLinks[currentCycle] : "#";
 
             return (
               <motion.div
@@ -202,12 +218,17 @@ export function PricingSection() {
                   </div>
                 </div>
 
-                <button className={`w-full py-4 rounded-2xl font-bold transition-all duration-300 mb-8 border border-[#CC3300]/20 ${plan.popular
-                  ? "bg-[#CC3300] text-white shadow-lg shadow-[#CC3300]/20 hover:scale-[1.02]"
-                  : "bg-transparent text-[#CC3300] hover:bg-[#CC3300] hover:text-white"
-                  }`}>
+                <a
+                  href={checkoutUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`w-full py-4 rounded-2xl font-bold transition-all duration-300 mb-8 border border-[#CC3300]/20 flex items-center justify-center ${plan.popular
+                    ? "bg-[#CC3300] text-white shadow-lg shadow-[#CC3300]/20 hover:scale-[1.02]"
+                    : "bg-transparent text-[#CC3300] hover:bg-[#CC3300] hover:text-white"
+                    }`}
+                >
                   {plan.buttonText}
-                </button>
+                </a>
 
                 <div className="flex flex-col gap-4 mt-auto">
                   {commonFeatures.map((feature, i) => {

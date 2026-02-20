@@ -22,7 +22,7 @@ export function HeroSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full mb-16">
 
             {/* Left Content */}
-            <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 lg:max-w-xl">
+            <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 lg:max-w-2xl">
               {/* Logo */}
               <div className="mb-8 lg:mb-12 hidden lg:block">
                 <img
@@ -34,24 +34,25 @@ export function HeroSection() {
 
               {/* Disclaimer H2 */}
               <div className="bg-[#FAE6E1] px-6 py-3 rounded-full mb-8 w-fit mx-auto lg:mx-0 max-w-full">
-                <h2 className="text-[rgb(204,51,0)] font-medium text-sm md:text-base leading-snug font-[Roboto] font-bold uppercase whitespace-normal text-center">
-                  Você ainda não tem uma <br /> assistente virtual?
+                <h2 className="text-[rgb(204,51,0)] font-medium text-sm md:text-base leading-tight font-[Roboto] font-normal uppercase whitespace-normal text-center lg:text-left">
+                  A <span className="font-black">maior e melhor</span> assistente virtual <br />
+                  focada na sua <span className="font-black">Saúde e Bem-Estar</span>
                 </h2>
               </div>
 
               {/* Headline H1 - Animated with SplitText */}
-              <h1 className="text-[rgb(30,21,20)] text-4xl md:text-5xl lg:text-[64px] leading-[1] mb-8 tracking-tight font-[Roboto] font-bold text-wrap text-center lg:text-left">
+              <h1 className="text-[rgb(30,21,20)] text-4xl md:text-5xl lg:text-[58px] leading-[1.1] mb-8 tracking-tight font-[Roboto] font-bold text-wrap text-center lg:text-left">
                 <SplitText
-                  text="Tenha acesso a SOL. Uma IA feita para cuidar de você."
-                  className="inline"
+                  text="Oi, eu sou a SOL!"
+                  className="inline text-[#cc3300]"
                   delay={50}
                   duration={0.6}
                   ease="power3.out"
                 />
                 <br />
                 <SplitText
-                  text="Pelo WhatsApp"
-                  className="inline text-[#25D366]"
+                  text="A inteligência artificial criada para cuidar de você, da sua saúde e do seu Jejum pelo WhatsApp"
+                  className="inline"
                   delay={350}
                   duration={0.6}
                   ease="power3.out"
