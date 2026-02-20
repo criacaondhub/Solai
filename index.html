@@ -164,13 +164,25 @@
         document.querySelectorAll('a[data-attach-utm="true"]').forEach(applyUTMToLink);
       };
 
+      // Execução robusta para Single Page Applications (React)
       if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", applyAll);
       } else {
         applyAll();
       }
 
-      try { console.log("UTMs aplicadas:", finalParams); } catch { }
+      // 1. Monitora mudanças no DOM (quando o React re-renderiza os componentes)
+      const observer = new MutationObserver(applyAll);
+      observer.observe(document.documentElement, { childList: true, subtree: true });
+
+      // 2. Fallback de segurança: checa a cada 2 segundos nos primeiros 10 segundos
+      let checks = 0;
+      const interval = setInterval(() => {
+        applyAll();
+        if (checks++ > 5) clearInterval(interval);
+      }, 2000);
+
+      try { console.log("UTM Tracker: Ativo", finalParams); } catch { }
     })();
   </script>
 </head>
