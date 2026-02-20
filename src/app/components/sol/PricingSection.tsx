@@ -219,6 +219,7 @@ export function PricingSection() {
                 </div>
 
                 <a
+                  id={`btn-${plan.id}-${currentCycle}`}
                   href={checkoutUrl}
                   target="_blank"
                   rel="noopener noreferrer"

@@ -16,6 +16,163 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sol.Ai</title>
   <link rel="icon" type="image/svg+xml" href="/src/assets/favicon-sol.svg" />
+  <script>
+    (function () {
+      // ------- utils -------
+      const qs = new URLSearchParams(window.location.search);
+      const ref = (document.referrer || "").toLowerCase();
+
+      const getParam = (k) => {
+        const v = qs.get(k);
+        return v === null ? null : v.trim();
+      };
+      const truthy = (v) => v !== null && v !== "" && v !== "null" && v !== "undefined";
+      const setIfMissing = (obj, key, val) => { if (!truthy(obj[key]) && truthy(val)) obj[key] = val; };
+
+      const appendParams = (url, paramsObj) => {
+        try {
+          const u = new URL(url, window.location.origin);
+          Object.entries(paramsObj).forEach(([k, v]) => { if (truthy(v)) u.searchParams.set(k, v); });
+          return u.toString();
+        } catch {
+          const u = new URL(url, window.location.href);
+          Object.entries(paramsObj).forEach(([k, v]) => { if (truthy(v)) u.searchParams.set(k, v); });
+          return u.toString();
+        }
+      };
+
+      // ------- mapeamentos custom (param=source) -------
+      const sourceMap = {
+        stories: "stories", bio: "bio", email: "email", "e-mail": "email",
+        pitch: "pitch", pitch_live: "pitch", grupo: "grupo", manychat: "manychat",
+        direct: "direct", linkedin: "linkedin", linkein: "linkedin", linktree: "linktree",
+        whatsapp: "whatsapp", youtube: "youtube", tiktok: "tiktok",
+        c0: "c0", c1: "c1", c2: "c2", c3: "c3", c4: "c4"
+      };
+
+      const refToSource = () => {
+        if (ref.includes("facebook.com") || ref.includes("instagram.com")) return "meta";
+        if (ref.includes("tiktok.com")) return "tiktok";
+        if (ref.includes("youtube.com")) return "youtube";
+        if (ref.includes("google.")) return "google";
+        if (ref.includes("manychat.com")) return "manychat";
+        if (ref.includes("linktr.ee") || ref.includes("linktree")) return "linktree";
+        if (ref.includes("wa.me") || ref.includes("whatsapp.com")) return "whatsapp";
+        if (ref.includes("linkedin.com")) return "linkedin";
+        return "direct";
+      };
+
+      // ------- UTMs -------
+      const utm = {
+        utm_source: getParam("utm_source"),
+        utm_medium: getParam("utm_medium"),
+        utm_campaign: getParam("utm_campaign"),
+        utm_content: getParam("utm_content"),
+        utm_term: getParam("utm_term")
+      };
+
+      const rawSource = (getParam("source") || "").toLowerCase();
+      const mappedSource = sourceMap[rawSource] || (truthy(rawSource) ? rawSource : null);
+      setIfMissing(utm, "utm_source", mappedSource);
+      setIfMissing(utm, "utm_source", refToSource());
+
+      const isMeta = ref.includes("facebook.com") || ref.includes("instagram.com") || truthy(getParam("fbclid")) ||
+        (utm.utm_source && ["meta", "facebook", "instagram"].includes(utm.utm_source.toLowerCase()));
+      const siteSourceName = getParam("site_source_name");
+
+      if (!truthy(utm.utm_medium)) {
+        if (isMeta || truthy(siteSourceName)) utm.utm_medium = "paid_social";
+        else if (utm.utm_source === "google") utm.utm_medium = truthy(getParam("gclid")) ? "cpc" : "organic";
+        else if (utm.utm_source === "direct") utm.utm_medium = "none";
+        else utm.utm_medium = "referral";
+      }
+
+      const passthrough = {
+        fbclid: getParam("fbclid"),
+        gclid: getParam("gclid"),
+        ad_id: getParam("ad_id"),
+        adset_id: getParam("adset_id"),
+        campaign_id: getParam("campaign_id"),
+        placement: getParam("placement"),
+        site_source_name: siteSourceName
+      };
+
+      const customCx = {};
+      ["c0", "c1", "c2", "c3", "c4", "C0", "C1", "C2", "C3", "C4"].forEach(k => {
+        const v = getParam(k);
+        if (truthy(v)) customCx[k.toLowerCase()] = v;
+      });
+
+      const stored = (() => {
+        try {
+          const raw = sessionStorage.getItem("persisted_utm_params");
+          return raw ? JSON.parse(raw) : {};
+        } catch { return {}; }
+      })();
+
+      const finalParams = { ...stored, ...utm, ...passthrough, ...customCx };
+      try { sessionStorage.setItem("persisted_utm_params", JSON.stringify(finalParams)); } catch { }
+
+      // ------- IDs conhecidos + produtos -------
+      const PRODUCT_IDS = {
+        // SOLO
+        rIRcNUZ: { href: "https://pay.kiwify.com.br/rIRcNUZ", id: "btn-solo-mensal" },
+        Y2KcAql: { href: "https://pay.kiwify.com.br/Y2KcAql", id: "btn-solo-semestral" },
+        r3PTOKe: { href: "https://pay.kiwify.com.br/r3PTOKe", id: "btn-solo-anual" },
+
+        // DUO
+        RCJTmmv: { href: "https://pay.kiwify.com.br/RCJTmmv", id: "btn-duo-mensal" },
+        Bfqp8rg: { href: "https://pay.kiwify.com.br/Bfqp8rg", id: "btn-duo-semestral" },
+        lECIVO7: { href: "https://pay.kiwify.com.br/lECIVO7", id: "btn-duo-anual" },
+
+        // FAMÍLIA
+        ebap4Hh: { href: "https://pay.kiwify.com.br/ebap4Hh", id: "btn-familia-mensal" },
+        KCzitPp: { href: "https://pay.kiwify.com.br/KCzitPp", id: "btn-familia-semestral" },
+        lfk8Mfs: { href: "https://pay.kiwify.com.br/lfk8Mfs", id: "btn-familia-anual" }
+      };
+
+      const ensureIdForProductLink = (code, info) => {
+        // procura por um link que contenha a URL do produto; se tiver sem id, cria
+        const selector = `a[href*="${info.href}"]`;
+        document.querySelectorAll(selector).forEach(a => {
+          if (!a.id) a.id = info.id; // gera id se não existir
+          a.setAttribute("data-attach-utm", "true"); // garante anexação de UTM
+        });
+      };
+
+      const applyUTMToLink = (el) => {
+        if (!el || !el.href) return;
+        const mustAttach = el.matches('[data-attach-utm="true"]') ||
+          /(^https?:\/\/)?(pay\.kiwify\.com\.br|pay\.tmbeducacao\.com\.br)/.test(el.href);
+        if (!mustAttach) return;
+        el.href = appendParams(el.href, finalParams);
+      };
+
+      const applyAll = () => {
+        // garante ID/atributo para todos os produtos e aplica UTM no elemento por ID (se existir)
+        Object.entries(PRODUCT_IDS).forEach(([code, info]) => {
+          ensureIdForProductLink(code, info);
+
+          const el = document.getElementById(info.id);
+          if (el) {
+            el.setAttribute("data-attach-utm", "true");
+            applyUTMToLink(el);
+          }
+        });
+
+        // aplicar em qualquer link marcado
+        document.querySelectorAll('a[data-attach-utm="true"]').forEach(applyUTMToLink);
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", applyAll);
+      } else {
+        applyAll();
+      }
+
+      try { console.log("UTMs aplicadas:", finalParams); } catch { }
+    })();
+  </script>
 </head>
 
 <body>
