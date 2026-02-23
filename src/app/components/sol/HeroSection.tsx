@@ -15,7 +15,7 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
       <ScrollBackgroundOrbs />
 
       <div className="relative z-10 w-full flex flex-col items-center flex-1">
-        <Ticker />
+        <Ticker isFreemium={isFreemium} />
 
         <div className="flex-1 flex flex-col items-center py-16 md:py-24 px-4 w-full max-w-[1440px] mx-auto">
 
@@ -69,7 +69,15 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
                     />
                     <span className="text-[#CC3300] inline">
                       <SplitText
-                        text="Grátis pra você testar agora."
+                        text="Grátis pra você "
+                        className="inline"
+                        delay={1200}
+                        duration={0.6}
+                        ease="power3.out"
+                      />
+                      <br className="md:hidden" />
+                      <SplitText
+                        text="testar agora."
                         className="inline"
                         delay={1200}
                         duration={0.6}
