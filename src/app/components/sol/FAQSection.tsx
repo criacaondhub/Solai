@@ -49,7 +49,7 @@ const faqData = [
   },
 ];
 
-export function FAQSection() {
+export function FAQSection({ ctaUrl }: { ctaUrl?: string }) {
   return (
     <section id="faq" className="bg-[#0D0D0D] py-16 md:py-24 px-6 relative overflow-hidden">
       {/* Background Decor - consistent with PricingSection but cleaner */}
@@ -111,7 +111,7 @@ export function FAQSection() {
           </p>
 
           <button
-            onClick={() => window.open("https://wa.me/5511996590207?text=Olá,%20estou%20na%20página%20da%20SOL%20e%20gostaria%20de%20falar%20com%20o%20suporte!", "_blank")}
+            onClick={() => window.open(ctaUrl || "https://wa.me/5511996590207?text=Olá,%20estou%20na%20página%20da%20SOL%20e%20gostaria%20de%20falar%20com%20o%20suporte!", "_blank")}
             className="inline-flex items-center gap-2 bg-[#CC3300] hover:bg-[#CC3300]/90 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(204,51,0,0.3)] hover:shadow-[0_4px_30px_rgba(204,51,0,0.5)] hover:-translate-y-1"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

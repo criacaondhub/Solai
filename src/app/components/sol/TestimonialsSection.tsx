@@ -24,7 +24,7 @@ const testimonials = [
   { id: "8", image: depoimento8, name: "Depoimento 8", className: "md:col-span-1 md:row-span-1", delay: 0.8 }
 ];
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ ctaUrl }: { ctaUrl?: string }) {
   return (
     <section className="py-16 md:py-24 px-6 relative">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -91,6 +91,10 @@ export function TestimonialsSection() {
             </p>
             <StartChatButton
               onClick={() => {
+                if (ctaUrl) {
+                  window.open(ctaUrl, "_blank");
+                  return;
+                }
                 const element = document.getElementById("pricing");
                 if (element) {
                   const targetY = element.getBoundingClientRect().top + window.pageYOffset;

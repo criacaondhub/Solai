@@ -8,7 +8,7 @@ import solMotion from "../../../assets/video-sol-transparente.webm";
 
 import solLogo from "@/assets/logo-sol.webp";
 
-export function HeroSection() {
+export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: string }) {
   return (
     <div className="bg-[#FFFAFA] min-h-screen flex flex-col font-[Roboto] relative overflow-hidden">
       {/* Unified Scroll-based Parallax Orbs for Light Sections */}
@@ -35,8 +35,16 @@ export function HeroSection() {
               {/* Disclaimer H2 */}
               <div className="bg-[#FAE6E1] px-6 py-3 rounded-full mb-8 w-fit mx-auto lg:mx-0 max-w-full">
                 <h2 className="text-[rgb(204,51,0)] font-medium text-sm md:text-base leading-tight font-[Roboto] font-normal uppercase whitespace-normal text-center lg:text-left">
-                  A <span className="font-black">maior e melhor</span> assistente virtual <br />
-                  focada na sua <span className="font-black">Saúde e Bem-Estar</span>
+                  {isFreemium ? (
+                    <>
+                      <span className="font-black underline-offset-4">Experimente grátis</span> — Sua assistente de Saúde e Jejum no WhatsApp
+                    </>
+                  ) : (
+                    <>
+                      A <span className="font-black">maior e melhor</span> assistente virtual <br />
+                      focada na sua <span className="font-black">Saúde e Bem-Estar</span>
+                    </>
+                  )}
                 </h2>
               </div>
 
@@ -50,18 +58,43 @@ export function HeroSection() {
                   ease="power3.out"
                 />
                 <br />
-                <SplitText
-                  text="A inteligência artificial criada para cuidar de você, da sua saúde e do seu Jejum pelo WhatsApp"
-                  className="inline"
-                  delay={350}
-                  duration={0.6}
-                  ease="power3.out"
-                />
+                {isFreemium ? (
+                  <>
+                    <SplitText
+                      text="A inteligência artificial que te acompanha no jejum e na saúde. "
+                      className="inline"
+                      delay={350}
+                      duration={0.6}
+                      ease="power3.out"
+                    />
+                    <span className="text-[#CC3300] inline">
+                      <SplitText
+                        text="Grátis pra você testar agora."
+                        className="inline"
+                        delay={1200}
+                        duration={0.6}
+                        ease="power3.out"
+                      />
+                    </span>
+                  </>
+                ) : (
+                  <SplitText
+                    text="A inteligência artificial criada para cuidar de você, da sua saúde e do seu Jejum pelo WhatsApp"
+                    className="inline"
+                    delay={350}
+                    duration={0.6}
+                    ease="power3.out"
+                  />
+                )}
               </h1>
 
               <div className="mb-10 lg:mb-0 mt-2">
                 <StartChatButton
                   onClick={() => {
+                    if (isFreemium && ctaUrl) {
+                      window.open(ctaUrl, "_blank");
+                      return;
+                    }
                     const element = document.getElementById("pricing");
                     if (element) {
                       const targetY = element.getBoundingClientRect().top + window.pageYOffset;

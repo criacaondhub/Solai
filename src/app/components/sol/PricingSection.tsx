@@ -108,7 +108,7 @@ const basePlans = [
   }
 ];
 
-export function PricingSection() {
+export function PricingSection({ ctaUrl }: { ctaUrl?: string }) {
   const isMobile = useIsMobile();
   // State object to manage billing cycles independently for each plan
   const [billingCycles, setBillingCycles] = useState<Record<string, "mensal" | "semestral" | "anual">>({
@@ -155,7 +155,7 @@ export function PricingSection() {
           {basePlans.map((plan, index) => {
             const currentCycle = billingCycles[plan.id];
             const currentPrice = plan.prices[currentCycle];
-            const checkoutUrl = (plan as any).checkoutLinks ? (plan as any).checkoutLinks[currentCycle] : "#";
+            const checkoutUrl = ctaUrl || ((plan as any).checkoutLinks ? (plan as any).checkoutLinks[currentCycle] : "#");
 
             return (
               <motion.div
