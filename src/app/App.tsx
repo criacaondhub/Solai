@@ -33,7 +33,7 @@ function LandingPage({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: st
 }
 
 export default function App() {
-  const freemiumCtaUrl = "https://wa.link/cit3zo";
+  const freemiumCtaUrl = "https://wa.link/w1q3xs";
 
   return (
     <Routes>
