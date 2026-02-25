@@ -7,6 +7,7 @@ import { PricingSection } from "./components/sol/PricingSection";
 import { FAQSection } from "./components/sol/FAQSection";
 import { ScrollBackgroundOrbs } from "./components/sol/ScrollBackgroundOrbs";
 import { OnboardingPage } from "./components/sol/OnboardingPage";
+import { FloatingWhatsAppButton } from "./components/sol/FloatingWhatsAppButton";
 
 function LandingPage({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: string }) {
   return (
@@ -28,6 +29,7 @@ function LandingPage({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: st
       </div>
 
       <FAQSection ctaUrl={ctaUrl} />
+      <FloatingWhatsAppButton />
     </main>
   );
 }
