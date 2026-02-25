@@ -12,11 +12,11 @@ export function ExpertSection() {
 
           {/* Left Column - Text */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, x: -30, translateZ: 0 }}
+            whileInView={{ opacity: 1, x: 0, translateZ: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="flex flex-col gap-8"
+            className="flex flex-col gap-8 [will-change:transform,opacity]"
           >
             <h2 className="text-[rgb(30,21,20)] text-3xl md:text-5xl font-bold leading-tight whitespace-pre-line font-[Roboto]">
               Entenda quem está {"\n"}
@@ -46,11 +46,11 @@ export function ExpertSection() {
 
           {/* Right Column - Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, scale: 0.95, translateZ: 0 }}
+            whileInView={{ opacity: 1, scale: 1, translateZ: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="relative [will-change:transform,opacity] [backface-visibility:hidden] [transform-style:preserve-3d]"
           >
             {/* Glass Backdrop Decoration */}
             <div className="absolute -inset-4 bg-white/40 backdrop-blur-xl rounded-[40px] border border-white/20 shadow-2xl -z-10 transform rotate-2 md:rotate-3" />
@@ -59,7 +59,7 @@ export function ExpertSection() {
               <ImageWithFallback
                 src={expertImg}
                 alt="Dra. Maíra Soliani"
-                className="w-full h-auto object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"
+                className="w-full h-auto object-cover grayscale-[0.2] group-hover:grayscale-0 transition-[filter,transform] duration-700 scale-100 group-hover:scale-105"
               />
 
               {/* Subtle Gradient Overlay */}

@@ -68,7 +68,7 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="flex flex-col md:flex-row relative w-full max-w-[1000px] h-[600px] md:h-[500px] rounded-[32px] overflow-hidden origin-top border border-white/20 bg-white/10 backdrop-blur-md shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]"
+        className="flex flex-col md:flex-row relative w-full max-w-[1000px] h-[600px] md:h-[500px] rounded-[32px] overflow-hidden origin-top border border-white/20 bg-white/10 backdrop-blur-md shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] [will-change:transform] [backface-visibility:hidden] [transform-style:preserve-3d]"
       >
         {/* Left Side - Image */}
         <div className="w-full md:w-5/12 h-2/5 md:h-full relative overflow-hidden">

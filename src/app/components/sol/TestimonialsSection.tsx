@@ -30,11 +30,11 @@ export function TestimonialsSection({ ctaUrl }: { ctaUrl?: string }) {
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20, translateZ: 0 }}
+            whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.8 }}
-            className="text-[rgb(30,21,20)] text-3xl md:text-5xl font-bold leading-tight whitespace-pre-line font-[Roboto]"
+            className="text-[rgb(30,21,20)] text-3xl md:text-5xl font-bold leading-tight whitespace-pre-line font-[Roboto] [will-change:transform,opacity]"
           >
             Veja como a <span className="text-[#cc3300]">SOL</span> está transformando{"\n"}
             o dia-a-dia das pessoas
@@ -46,13 +46,17 @@ export function TestimonialsSection({ ctaUrl }: { ctaUrl?: string }) {
           {testimonials.map((item) => (
             <motion.div
               key={item.id}
-              initial={{ opacity: 0, scale: 0.95, y: 30 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
-              className={`group relative overflow-hidden rounded-[32px] border-2 border-transparent bg-white shadow-sm hover:shadow-2xl hover:border-[#CC3300]/30 transition-all duration-500 cursor-default ${item.className}`}
+              initial={{ opacity: 0, scale: 0.95, y: 30, translateZ: 0 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0, translateZ: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{
+                duration: 0.6,
+                delay: item.delay,
+                ease: [0.16, 1, 0.3, 1]
+              }}
+              className={`group relative overflow-hidden rounded-[32px] border-2 border-transparent bg-white shadow-sm hover:shadow-2xl hover:border-[#CC3300]/30 transition-[border-color,box-shadow] duration-500 cursor-default ${item.className} [will-change:transform,opacity] [backface-visibility:hidden] [transform-style:preserve-3d]`}
             >
-              {/* Print Image Container */}
+              {/* Image Container - Fixed height/aspect to prevent jump */}
               <div className="w-full h-full bg-[#0b141a] flex items-center justify-center overflow-hidden relative">
                 <ImageWithFallback
                   src={item.image}

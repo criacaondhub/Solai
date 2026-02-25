@@ -133,19 +133,19 @@ export function PricingSection({ ctaUrl }: { ctaUrl?: string }) {
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-white text-3xl md:text-5xl font-bold leading-tight font-[Roboto] mb-6"
+            initial={{ opacity: 0, y: 20, translateZ: 0 }}
+            whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            className="text-white text-3xl md:text-5xl font-bold leading-tight font-[Roboto] mb-6 [will-change:transform,opacity]"
           >
             Escolha um dos <br className="md:hidden" /> <span className="text-[#CC3300]">nossos planos.</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20, translateZ: 0 }}
+            whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ delay: 0.1 }}
-            className="text-white/60 text-lg md:text-xl max-w-4xl mx-auto font-light"
+            className="text-white/60 text-lg md:text-xl max-w-4xl mx-auto font-light [will-change:transform,opacity]"
           >
             Saúde e alimentação a um clique de distância, 24h por dia no seu WhatsApp.
           </motion.p>
@@ -160,14 +160,14 @@ export function PricingSection({ ctaUrl }: { ctaUrl?: string }) {
             return (
               <motion.div
                 key={plan.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                initial={{ opacity: 0, y: 30, translateZ: 0 }}
+                whileInView={{ opacity: 1, y: 0, translateZ: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className={`relative flex flex-col p-8 rounded-[32px] border transition-all duration-500 group ${plan.popular
+                className={`relative flex flex-col p-8 rounded-[32px] border transition-[border-color,box-shadow,background-color,transform] duration-500 group ${plan.popular
                   ? "bg-white/[0.05] border-[#CC3300]/40 shadow-[0_0_40px_rgba(204,51,0,0.1)]"
                   : "bg-white/[0.02] border-white/10 hover:border-white/20"
-                  } backdrop-blur-xl`}
+                  } backdrop-blur-xl [will-change:transform,opacity] [backface-visibility:hidden] [transform-style:preserve-3d]`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#CC3300] text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">

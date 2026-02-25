@@ -91,7 +91,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
               <span
                 key={charIndex}
                 className="split-item"
-                style={{ display: 'inline-block', opacity: 0 }} // Initial hidden state to prevent flash
+                style={{ display: 'inline-block', opacity: 0, willChange: 'transform, opacity', backfaceVisibility: 'hidden' }} // Initial hidden state to prevent flash
               >
                 {char}
               </span>
@@ -99,7 +99,7 @@ export const SplitText: React.FC<SplitTextProps> = ({
             : (
               <span
                 className="split-item"
-                style={{ display: 'inline-block', opacity: 0 }}
+                style={{ display: 'inline-block', opacity: 0, willChange: 'transform, opacity', backfaceVisibility: 'hidden' }}
               >
                 {word}
               </span>
