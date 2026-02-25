@@ -24,7 +24,7 @@ const testimonials = [
   { id: "8", image: depoimento8, name: "Depoimento 8", className: "md:col-span-1 md:row-span-1", delay: 0.8 }
 ];
 
-export function TestimonialsSection({ ctaUrl }: { ctaUrl?: string }) {
+export function TestimonialsSection({ ctaUrl, isFreemium }: { ctaUrl?: string; isFreemium?: boolean }) {
   return (
     <section className="py-16 md:py-24 px-6 relative">
       <div className="max-w-6xl mx-auto relative z-10">
@@ -94,6 +94,7 @@ export function TestimonialsSection({ ctaUrl }: { ctaUrl?: string }) {
               * Relatos reais compartilhados via WhatsApp. A privacidade dos nossos usuários é nossa prioridade.
             </p>
             <StartChatButton
+              text={isFreemium ? "Quero fazer o teste grátis" : "Quero falar com a SOL"}
               onClick={() => {
                 if (ctaUrl) {
                   window.open(ctaUrl, "_blank");

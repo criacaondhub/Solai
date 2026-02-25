@@ -7,6 +7,7 @@ import gsap from "gsap";
 import solMotion from "../../../assets/video-sol-transparente.webm";
 
 import solLogo from "@/assets/logo-sol.webp";
+import solMobileImg from "@/assets/img-mobile.webp";
 
 export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: string }) {
   return (
@@ -98,6 +99,7 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
 
               <div className="mb-10 lg:mb-0 mt-2">
                 <StartChatButton
+                  text={isFreemium ? "Quero fazer o teste grátis" : "Quero falar com a SOL"}
                   onClick={() => {
                     if (isFreemium && ctaUrl) {
                       window.open(ctaUrl, "_blank");
@@ -120,7 +122,7 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
               </div>
             </div>
 
-            {/* Right Side: Motion Video */}
+            {/* Right Side: Motion Video (Desktop) / Image (Mobile) */}
             <div className="order-1 lg:order-2 flex justify-center items-center lg:w-[760px]">
               <div className="relative w-full lg:w-[760px] flex justify-center">
                 <video
@@ -131,12 +133,10 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
                   style={{ width: '100%', maxWidth: '760px', minWidth: '760px' }}
                   className="h-auto object-contain drop-shadow-2xl hidden lg:block"
                 />
-                {/* Mobile version without forced width */}
-                <video
-                  src={solMotion}
-                  autoPlay
-                  muted
-                  playsInline
+                {/* Mobile version uses static image */}
+                <img
+                  src={solMobileImg}
+                  alt="Sol Interface Mobile"
                   className="w-full h-auto object-contain drop-shadow-2xl lg:hidden"
                 />
               </div>

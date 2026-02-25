@@ -17,7 +17,7 @@ function LandingPage({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: st
       {/* Light Sections Group with Unified Parallax */}
       <div className="relative bg-[#FFFAFA] overflow-hidden">
         <ScrollBackgroundOrbs />
-        <TestimonialsSection ctaUrl={ctaUrl} />
+        <TestimonialsSection ctaUrl={ctaUrl} isFreemium={isFreemium} />
         <ExpertSection />
       </div>
 

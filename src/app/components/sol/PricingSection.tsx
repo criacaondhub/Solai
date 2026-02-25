@@ -155,7 +155,7 @@ export function PricingSection({ ctaUrl }: { ctaUrl?: string }) {
           {basePlans.map((plan, index) => {
             const currentCycle = billingCycles[plan.id];
             const currentPrice = plan.prices[currentCycle];
-            const checkoutUrl = ctaUrl || ((plan as any).checkoutLinks ? (plan as any).checkoutLinks[currentCycle] : "#");
+            const checkoutUrl = (plan as any).checkoutLinks ? (plan as any).checkoutLinks[currentCycle] : "#";
 
             return (
               <motion.div
