@@ -51,7 +51,8 @@ function formatPhoneDisplay(phone: string): string {
 // ─── Constants ───────────────────────────────────────────────────────
 const MAX_RETRIES = 5;
 const RETRY_DELAY_MS = 2000;
-const WHATSAPP_BOT_URL = "https://wa.me/5511966113170"; // Placeholder
+const WHATSAPP_BOT_URL = "https://wa.me/5511966113170";
+const WHATSAPP_SUPPORT_URL = "https://api.whatsapp.com/send/?phone=5511965846400&text=Olá%2C+gostaria+de+falar+com+o+suporte+da+Sol%21&type=phone_number&app_absent=0";
 
 // ─── Component ───────────────────────────────────────────────────────
 export function OnboardingPage() {
@@ -288,7 +289,7 @@ export function OnboardingPage() {
                                 </button>
                             )}
                             <a
-                                href={WHATSAPP_BOT_URL}
+                                href={WHATSAPP_SUPPORT_URL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex-1 py-3.5 px-6 rounded-2xl border border-white/10 text-white font-bold text-sm text-center hover:bg-white/5 transition-all duration-300"
