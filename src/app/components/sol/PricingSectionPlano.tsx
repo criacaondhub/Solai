@@ -49,7 +49,7 @@ export function PricingSectionPlano() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24">
 
           {/* Left Column - List */}
-          <div className="flex-1 w-full order-2 lg:order-1">
+          <div className="flex-1 w-full order-1 lg:order-1">
             <div className="hidden lg:block">
               <motion.h2
                 initial={{ opacity: 0, x: -30 }}
@@ -99,7 +99,7 @@ export function PricingSectionPlano() {
           </div>
 
           {/* Right Column - Price Box */}
-          <div className="w-full lg:w-[480px] order-1 lg:order-2">
+          <div className="w-full lg:w-[480px] order-2 lg:order-2">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -131,9 +131,9 @@ export function PricingSectionPlano() {
 
                 <div className="space-y-4 mb-8">
                   {/* Temporary Discount Banner */}
-                  <div className="flex items-center justify-center gap-2.5 mb-3">
+                  <div className="flex items-center justify-center gap-1.5 md:gap-2.5 mb-3">
                     <div className="w-4 h-4 border-2 border-[#CC3300]/20 border-t-[#CC3300] rounded-full animate-spin" />
-                    <span className="text-[#CC3300] text-[11px] lg:text-sm font-black tracking-[0.2em] uppercase">
+                    <span className="text-[#CC3300] text-[11px] lg:text-sm font-black tracking-normal md:tracking-[0.2em] uppercase text-center">
                       DESCONTO TEMPORÁRIO EXPIRANDO
                     </span>
                   </div>
@@ -170,9 +170,9 @@ export function PricingSectionPlano() {
                     href={checkoutUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full px-8 py-5 text-white font-black text-lg tracking-tight uppercase"
+                    className="flex items-center justify-center w-full px-8 py-5 text-white font-black text-lg leading-none md:leading-normal tracking-tight uppercase text-center"
                   >
-                    QUERO MEU ACESSO À SOL AGORA
+                    QUERO MEU ACESSO <br className="md:hidden" /> À SOL AGORA
                   </a>
                 </div>
 
