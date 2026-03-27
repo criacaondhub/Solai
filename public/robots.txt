@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Allow: /ai-readable
+
+Sitemap: https://sol.mairasoliani.com.br/sitemap.xml
