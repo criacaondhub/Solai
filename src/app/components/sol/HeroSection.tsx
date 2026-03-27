@@ -9,7 +9,7 @@ import solMotion from "../../../assets/video-sol-transparente.webm";
 import solLogo from "@/assets/logo-sol.webp";
 import solMobileImg from "@/assets/img-mobile.webp";
 
-export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: string }) {
+export function HeroSection({ isFreemium, ctaUrl, youtubeVideoId }: { isFreemium?: boolean; ctaUrl?: string; youtubeVideoId?: string }) {
   return (
     <div className="bg-[#FFFAFA] min-h-screen flex flex-col font-[Roboto] relative overflow-hidden">
       {/* Unified Scroll-based Parallax Orbs for Light Sections */}
@@ -34,23 +34,25 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
               </div>
 
               {/* Disclaimer H2 */}
-              <div className="bg-[#FAE6E1] px-6 py-3 rounded-full mb-8 w-fit mx-auto lg:mx-0 max-w-full">
-                <h2 className="text-[rgb(204,51,0)] font-medium text-sm md:text-base leading-tight font-[Roboto] font-normal uppercase whitespace-normal text-center lg:text-left">
-                  {isFreemium ? (
-                    <>
-                      <span className="font-black underline-offset-4">Experimente grátis</span> — Sua assistente de Saúde e Jejum no WhatsApp
-                    </>
-                  ) : (
-                    <>
-                      A <span className="font-black">maior e melhor</span> assistente virtual <br />
-                      focada na sua <span className="font-black">Saúde e Bem-Estar</span>
-                    </>
-                  )}
-                </h2>
-              </div>
+              {(isFreemium || !youtubeVideoId) && (
+                <div className="bg-[#FAE6E1] px-6 py-3 rounded-full mb-8 w-fit mx-auto lg:mx-0 max-w-full">
+                  <h2 className="text-[rgb(204,51,0)] font-medium text-sm md:text-base leading-tight font-[Roboto] font-normal uppercase whitespace-normal text-center lg:text-left">
+                    {isFreemium ? (
+                      <>
+                        <span className="font-black underline-offset-4">Experimente grátis</span> — Sua assistente de Saúde e Jejum no WhatsApp
+                      </>
+                    ) : (
+                      <>
+                        A <span className="font-black">maior e melhor</span> assistente virtual <br />
+                        focada na sua <span className="font-black">Saúde e Bem-Estar</span>
+                      </>
+                    )}
+                  </h2>
+                </div>
+              )}
 
               {/* Headline H1 - Animated with SplitText */}
-              <h1 className="text-[rgb(30,21,20)] text-4xl md:text-5xl lg:text-[58px] leading-[1.1] mb-8 tracking-tight font-[Roboto] font-bold text-wrap text-center lg:text-left">
+              <h1 className={`text-[rgb(30,21,20)] ${youtubeVideoId ? 'text-[32px] md:text-[44px] lg:text-[54px]' : 'text-4xl md:text-5xl lg:text-[58px]'} leading-[1.1] mb-8 tracking-tight font-[Roboto] font-bold text-wrap text-center lg:text-left`}>
                 <SplitText
                   text="Oi, eu sou a SOL!"
                   className="inline text-[#cc3300]"
@@ -125,15 +127,32 @@ export function HeroSection({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaU
             {/* Right Side: Motion Video (Desktop) / Image (Mobile) */}
             <div className="order-1 lg:order-2 flex justify-center items-center lg:w-[760px]">
               <div className="relative w-full lg:w-[760px] flex justify-center">
-                <video
-                  src={solMotion}
-                  autoPlay
-                  muted
-                  playsInline
-                  style={{ width: '100%', maxWidth: '760px', minWidth: '760px' }}
-                  className="h-auto object-contain drop-shadow-2xl hidden lg:block"
-                />
-                {/* Mobile version uses static image */}
+                {youtubeVideoId ? (
+                  <div
+                    className="hidden lg:block w-full drop-shadow-2xl rounded-2xl overflow-hidden"
+                    style={{ maxWidth: '760px' }}
+                  >
+                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                      <iframe
+                        src={`https://www.youtube.com/embed/${youtubeVideoId}?autoplay=0&mute=0&playsinline=1&loop=1&playlist=${youtubeVideoId}&controls=1&rel=0&modestbranding=1`}
+                        title="SOL.IA — Assistente de Jejum via WhatsApp"
+                        allow="autoplay; encrypted-media"
+                        allowFullScreen
+                        style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <video
+                    src={solMotion}
+                    autoPlay
+                    muted
+                    playsInline
+                    style={{ width: '100%', maxWidth: '760px', minWidth: '760px' }}
+                    className="h-auto object-contain drop-shadow-2xl hidden lg:block"
+                  />
+                )}
+                {/* Mobile version always uses static image */}
                 <img
                   src={solMobileImg}
                   alt="Sol Interface Mobile"

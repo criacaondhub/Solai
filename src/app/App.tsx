@@ -35,6 +35,31 @@ function LandingPage({ isFreemium, ctaUrl }: { isFreemium?: boolean; ctaUrl?: st
   );
 }
 
+function LandingPageV2({ ctaUrl }: { ctaUrl?: string }) {
+  return (
+    <main className="relative">
+      <HeroSection youtubeVideoId="ABtgVjnJ6I0" ctaUrl={ctaUrl} />
+      <CardStackSection />
+
+      {/* Light Sections Group with Unified Parallax */}
+      <div className="relative bg-[#FFFAFA] overflow-hidden">
+        <ScrollBackgroundOrbs />
+        <TestimonialsSection ctaUrl={ctaUrl} />
+        <ExpertSection />
+      </div>
+
+      <PricingSection ctaUrl={ctaUrl} />
+
+      <div className="bg-[#0D0D0D] flex justify-center items-center py-2 relative z-10">
+        <div className="w-20 h-1.5 bg-[#CC3300] rounded-full opacity-80 shadow-[0_0_15px_rgba(204,51,0,0.4)]" />
+      </div>
+
+      <FAQSection ctaUrl={ctaUrl} />
+      <FloatingWhatsAppButton />
+    </main>
+  );
+}
+
 function LandingPagePlano({ ctaUrl }: { ctaUrl?: string }) {
   return (
     <main className="relative">
@@ -67,6 +92,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/freemium" element={<LandingPage isFreemium={true} ctaUrl={freemiumCtaUrl} />} />
+      <Route path="/v2" element={<LandingPageV2 />} />
       <Route path="/plano" element={<LandingPagePlano />} />
       <Route path="/obrigado" element={<OnboardingPage />} />
     </Routes>
