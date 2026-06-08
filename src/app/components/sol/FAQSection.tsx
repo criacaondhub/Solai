@@ -111,7 +111,7 @@ export function FAQSection({ ctaUrl }: { ctaUrl?: string }) {
           </p>
 
           <button
-            onClick={() => window.open("https://api.whatsapp.com/send/?phone=5511965846400&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Sol%21&type=phone_number&app_absent=0", "_blank")}
+            onClick={() => window.open("https://wa.me/5511936237285?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20da%20Sol%20e%20quero%20saber%20mais!", "_blank")}
             className="inline-flex items-center gap-2 bg-[#CC3300] hover:bg-[#CC3300]/90 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(204,51,0,0.3)] hover:shadow-[0_4px_30px_rgba(204,51,0,0.5)] hover:-translate-y-1"
           >
             <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">

@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 
 export function FloatingWhatsAppButton() {
-    const whatsappUrl = "https://api.whatsapp.com/send/?phone=5511965846400&text=Olá%2C+gostaria+de+saber+mais+sobre+a+Sol%21&type=phone_number&app_absent=0";
+    const whatsappUrl = "https://wa.me/5511936237285?text=Ol%C3%A1!%20Vim%20da%20p%C3%A1gina%20da%20Sol%20e%20quero%20saber%20mais!";
 
     return (
         <motion.div
